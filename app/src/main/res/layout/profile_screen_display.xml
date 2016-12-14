@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/profileNameDisp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/profile_name_hint"/>
+
+    <CheckBox
+        android:id="@+id/isSilentEnabledDisp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/silent_mode"
+        android:checked="true" />
+
+    <CheckBox
+        android:id="@+id/isViberateEnabledDisp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/viberate_mode"
+        android:checked="true" />
+
+    <CheckBox
+        android:id="@+id/isWifiEnabledDisp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/wifi_off"
+        android:checked="true" />
+
+    <CheckBox
+        android:id="@+id/isBluetoothEnabledDisp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bluetooth_off"
+        android:checked="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/starttimeDescDisp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="START TIME"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:textAlignment="center"
+        />
+
+
+    <TextView
+        android:id="@+id/starttimeDisp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Click to Add Start Time"
+        android:onClick="addStartTime"/>
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/endtimeDescDisp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="END TIME"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/endtimeDisp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Click to Add End Time"
+        android:onClick="addEndTime"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+    <TextView
+        android:id="@+id/daysofweekDescDisp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DAYS OF WEEK"
+        android:textColor="#000000"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/chooseDayOfWeekDisp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="chooseDayOfWeek"
+        android:textSize="15dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+    <TextView
+        android:id="@+id/locationDescDisp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LOCATION"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/locationDisp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Click to Add Location"
+        android:onClick="addAddress"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+
+</LinearLayout>

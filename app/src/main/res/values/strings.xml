@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">SilentApp</string>
+    <string name="title_activity_maps">Silent App</string>
+    <string name="profile_name_hint">Enter the Profile Name</string>
+    <string name="silent_mode">Silent Mode</string>
+    <string name="viberate_mode">Viberate Mode</string>
+    <string name="add_profile">ADD PROFILE</string>
+    <string name="add_profile_intent">add_profile_intent</string>
+    <string name="insert_profile">insert_profile</string>
+    <string name="wifi_off">Wifi Off</string>
+    <string name="start_time">Start Time</string>
+    <string name="bluetooth_off">Bluetooth Off</string>
+    <string name="end_time">End Time</string>
+    <string name="sunday">SUNDAY</string>
+    <string name="monday">MONDAY</string>
+    <string name="tuesday">TUESDAY</string>
+    <string name="wednesday">WEDNESDAY</string>
+    <string name="thursday">THURSDAY</string>
+    <string name="friday">FRIDAY</string>
+    <string name="saturday">SATURDAY</string>
+
+</resources>

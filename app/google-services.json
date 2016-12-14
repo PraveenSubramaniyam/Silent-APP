@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "165030449260",
+    "project_id": "starry-trilogy-145117"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165030449260:android:8b33f891f403871f",
+        "android_client_info": {
+          "package_name": "com.example.praveensubramaniyam.silentapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165030449260-rgguf3bnlsl8cpiecmr2iv52dul2aphf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.praveensubramaniyam.silentapp",
+            "certificate_hash": "8CF77283080448AD9D36D7371888F507D6917384"
+          }
+        },
+        {
+          "client_id": "165030449260-44peu4mna12dqu20d0hs7tq3n3c75khk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrnfqMNYZo7yT1yTLOE00MvC3GOoZr72E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
