@@ -14,6 +14,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -26,6 +27,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -48,6 +51,7 @@ public class ProfileListActivity extends AppCompatActivity implements SensorEven
     private SilentAppSettings mSilentAppSettings;
     private SensorManager mSensorManager;
     private Sensor mSensor;
+    private ProfileTableValues profileTableValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +64,7 @@ public class ProfileListActivity extends AppCompatActivity implements SensorEven
         mSettings = PreferenceManager.getDefaultSharedPreferences(this);
         mSilentAppSettings = new SilentAppSettings(mSettings);
 
-        ProfileTableValues profileTableValues;
+
         mAppList = new ArrayList<String>();
 
         db = new DataBaseHelper(getApplicationContext());
@@ -71,6 +75,12 @@ public class ProfileListActivity extends AppCompatActivity implements SensorEven
             for (String temp : profileTableValues.getProfileNames()) {
                 mAppList.add(temp);
             }
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.BLACK);
         }
 
         mListView = (SwipeMenuListView) findViewById(R.id.listView);
@@ -101,11 +111,14 @@ public class ProfileListActivity extends AppCompatActivity implements SensorEven
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 String item = mAppList.get(position);
+                Log.i(TAG,"Delete Clicked: "+index);
                 switch (index) {
-                    case 1:
+                    case 0:
                         mAppList.remove(position);
                         mAdapter.notifyDataSetChanged();
+                        db = new DataBaseHelper(getApplicationContext());
 
+                        db.deleteProfile(profileTableValues.getProfileId().get(position));
                         break;
                 }
                 return false;
@@ -240,7 +253,6 @@ public class ProfileListActivity extends AppCompatActivity implements SensorEven
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.ACCESS_FINE_LOCATION)) {
 
             } else {
-
                 ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},1);
             }
         }

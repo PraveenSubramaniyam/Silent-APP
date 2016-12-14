@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -27,14 +26,24 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-    // Method is called during creation of the database
+    /**
+     * onCreate: Called during the creation of the database
+     * @param database
+     */
     @Override
     public void onCreate(SQLiteDatabase database) {
         Log.i(TAG,"DBhealper Oncreate Called");
         database.execSQL(ProfileTable.CREATE_ENTRIES);
     }
 
-    // Method is called during an upgrade of the database,
+
+
+    /**
+     * onUpgrade: Method is called during an upgrade of the database
+     * @param database
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
     public void onUpgrade(SQLiteDatabase database,int oldVersion,int newVersion){
         Log.w(DataBaseHelper.class.getName(),
@@ -44,6 +53,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         onCreate(database);
     }
 
+    /**
+     * getDateTime function is used to return the current date in string format
+     * @return
+     */
     private String getDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
                 "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
@@ -51,6 +64,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return dateFormat.format(date);
     }
 
+    /**
+     * Function is used to insert values into the ProfileTable
+     * @param values
+     * @return
+     */
     public long insertProfileTable(ContentValues values)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -61,6 +79,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * Function is used return the rows in the profile table which has the
+     * @return
+     */
     public ProfileTableValues getCoordinates()
     {
         Log.i(TAG,"Calling get corrdinates a row");
@@ -119,6 +141,24 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return profileTableValues;
     }
 
+
+    /**
+     * Function to update the ProfileTable when the profile id is given
+     * @param values
+     * @param id
+     */
+    public void updateProfileTable(ContentValues values,long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(ProfileTable.TABLE_NAME, values, ProfileTable.C_PID + " = " + id, null);
+        db.close();
+    }
+
+
+    /**
+     * Function to return all the rows of the ProfileTable
+     * @param whereClause
+     * @return
+     */
     public ProfileTableValues getProfileTableValues(String whereClause)
     {
         ProfileTableValues profileTableValues = null;
@@ -131,7 +171,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 ProfileTable.C_PNAME,
                 ProfileTable.C_StartTime,
                 ProfileTable.C_EndTime,
-                ProfileTable.C_Cordinates
+                ProfileTable.C_Cordinates,
+                ProfileTable.C_PID
         };
 
         Cursor c = myDB.query(
@@ -151,7 +192,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         int Column5 = c.getColumnIndex(ProfileTable.C_ISVIBERATE);
         int Column6 = c.getColumnIndex(ProfileTable.C_StartTime);
         int Column7 = c.getColumnIndex(ProfileTable.C_EndTime);
-        int Column8 = c.getColumnIndex(ProfileTable.C_Cordinates);
+        int Column8 = c.getColumnIndex(ProfileTable.C_PID);
 
         try {
             c.moveToFirst();
@@ -166,6 +207,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     profileTableValues.addisViberateVales((c.getInt(Column5) != 0));
                     profileTableValues.addStartTime(c.getString(Column6));
                     profileTableValues.addEndTime(c.getString(Column7));
+                    profileTableValues.addProfileId(c.getInt(Column8));
                 } while (c.moveToNext());
             }
         }
@@ -178,5 +220,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 myDB.close();
         }
         return profileTableValues;
+    }
+
+    public boolean deleteProfile(int id)
+    {
+        Boolean retVal;
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        retVal = myDB.delete(ProfileTable.TABLE_NAME, ProfileTable.C_PID+ "=" + String.valueOf(id), null) >0 ;
+        myDB.close();
+        return retVal;
     }
 }

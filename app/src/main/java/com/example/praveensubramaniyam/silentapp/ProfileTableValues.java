@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 
 public class ProfileTableValues {
+    private ArrayList <Integer> profileId;
     private ArrayList <String> profileNames;
     private ArrayList <String> startTime;
     private ArrayList <String> endTime;
@@ -25,6 +26,14 @@ public class ProfileTableValues {
         this.coordinates = coordinates;
     }
 
+    public ArrayList<Integer> getProfileId() {
+        return profileId;
+    }
+
+    public void setProfileId(ArrayList<Integer> profileId) {
+        this.profileId = profileId;
+    }
+
     public ProfileTableValues() {
         profileNames = null;
         startTime = null;
@@ -35,8 +44,16 @@ public class ProfileTableValues {
         isWifiVales = null;
         isViberateVales = null;
         coordinates = null;
+        profileId = null;
     }
 
+    public void addProfileId(int id)
+    {
+        if (profileId == null) {
+            profileId = new ArrayList<Integer>();
+        }
+        profileId.add(id);
+    }
 
     public void addProfileNames(String profileName)
     {
